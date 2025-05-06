@@ -14,17 +14,27 @@
 - Временные QR-коды
 - История генерации
 
+## Поддерживаемые платформы
+
+- Windows
+- Linux
+- macOS
+
 ## Установка
 
 1. Установите Poetry, если он еще не установлен:
 ```bash
+# Windows (PowerShell)
+(Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | python -
+
+# Linux/macOS
 curl -sSL https://install.python-poetry.org | python3 -
 ```
 
 2. Клонируйте репозиторий:
 ```bash
-git clone <url-репозитория>
-cd qr-generator
+git clone https://github.com/RuOuroborous/QR2.git
+cd QR2
 ```
 
 3. Установите зависимости с помощью Poetry:
@@ -48,4 +58,20 @@ poetry run python frontend.py
 - Poetry
 - Pillow
 - qrcode
-- cryptography 
+- cryptography
+
+## Примечания для разных ОС
+
+### Windows
+- Иконка приложения должна быть в формате `.ico`
+- Файл иконки должен находиться в папке `icon/icona.ico`
+
+### Linux/macOS
+- Иконка приложения должна быть в формате `.png`
+- Файл иконки должен находиться в папке `icon/icona.png`
+- Убедитесь, что у вас установлены необходимые системные зависимости для работы с GUI:
+  ```bash
+  # Ubuntu/Debian
+  sudo apt-get install python3-tk
+  ```
+- Все пути к файлам чувствительны к регистру 

@@ -16,8 +16,8 @@ class QRGenerator:
             box_size=10,
             border=4,
         )
-        self.qr_color = "black"
-        self.bg_color = "white"
+        self.qr_color = "#000000"
+        self.bg_color = "#FFFFFF"
         self.logo_path = None
         self.qr_type = 'text'
         self.default_save_dir = os.path.join(os.path.expanduser("~"), "QR_Codes")
@@ -29,7 +29,7 @@ class QRGenerator:
     
     def _ensure_save_dir(self):
         if not os.path.exists(self.default_save_dir):
-            os.makedirs(self.default_save_dir)
+            os.makedirs(self.default_save_dir, exist_ok=True)
     
     def _load_history(self):
         if os.path.exists(self.history_file):

@@ -5,6 +5,7 @@ import PIL.ImageTk
 from backend import QRGenerator
 from languages import LANGUAGES
 import os
+import platform
 from datetime import datetime
 
 class QRApp:
@@ -13,8 +14,13 @@ class QRApp:
         self.root.title(LANGUAGES['ru']['title'])
         self.root.geometry("480x540")  # Уменьшаем на 40% от 800x900
         
-        # Установка иконки
-        self.icon_path = os.path.join('Icon', 'icona.ico')  # Исправлен путь к иконке
+        # Определяем ОС и выбираем формат иконки
+        system = platform.system()
+        if system == "Windows":
+            self.icon_path = os.path.join('icon', 'icona.ico')
+        else:  # Linux или macOS
+            self.icon_path = os.path.join('icon', 'icona.png')
+        
         if os.path.exists(self.icon_path):
             try:
                 icon = PIL.Image.open(self.icon_path)
@@ -375,15 +381,15 @@ class QRApp:
     def show_wifi_dialog(self):
         dialog = tk.Toplevel(self.root)
         dialog.title(LANGUAGES[self.current_language]['wifi_title'])
-        dialog.geometry("240x150")  # Уменьшаем на 40% от 400x250
+        dialog.geometry("276x173")  # Увеличено на 15% от 240x150
         self.set_window_icon(dialog)
         
         ttk.Label(dialog, text=LANGUAGES[self.current_language]['wifi_ssid']).pack(pady=5)
-        ssid_entry = ttk.Entry(dialog, width=24)  # Уменьшаем ширину на 40%
+        ssid_entry = ttk.Entry(dialog, width=24)
         ssid_entry.pack(pady=5)
         
         ttk.Label(dialog, text=LANGUAGES[self.current_language]['wifi_password']).pack(pady=5)
-        password_entry = ttk.Entry(dialog, show="*", width=24)  # Уменьшаем ширину на 40%
+        password_entry = ttk.Entry(dialog, show="*", width=24)
         password_entry.pack(pady=5)
         
         def generate_wifi_qr():
@@ -406,15 +412,15 @@ class QRApp:
     def show_location_dialog(self):
         dialog = tk.Toplevel(self.root)
         dialog.title(LANGUAGES[self.current_language]['location_title'])
-        dialog.geometry("240x150")  # Уменьшаем на 40% от 400x250
+        dialog.geometry("276x173")  # Увеличено на 15% от 240x150
         self.set_window_icon(dialog)
         
         ttk.Label(dialog, text=LANGUAGES[self.current_language]['location_lat']).pack(pady=5)
-        lat_entry = ttk.Entry(dialog, width=24)  # Уменьшаем ширину на 40%
+        lat_entry = ttk.Entry(dialog, width=24)
         lat_entry.pack(pady=5)
         
         ttk.Label(dialog, text=LANGUAGES[self.current_language]['location_lon']).pack(pady=5)
-        lon_entry = ttk.Entry(dialog, width=24)  # Уменьшаем ширину на 40%
+        lon_entry = ttk.Entry(dialog, width=24)
         lon_entry.pack(pady=5)
         
         def generate_location_qr():
